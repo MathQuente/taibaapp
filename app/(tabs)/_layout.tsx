@@ -1,4 +1,6 @@
+import Entypo from '@expo/vector-icons/Entypo';
 import { Link, Tabs } from 'expo-router';
+import { View, Image } from 'react-native';
 
 import { HeaderButton } from '../../components/HeaderButton';
 import { TabBarIcon } from '../../components/TabBarIcon';
@@ -8,12 +10,20 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: 'black',
+        tabBarStyle: {
+          backgroundColor: '#FFFF00',
+        },
+        header: () => (
+          <View className="flex h-14 w-full items-center bg-red-300">
+            <Image source={require('../../assets/Logo.png')} />
+          </View>
+        ),
       }}>
       <Tabs.Screen
-        name="index"
+        name="initialPage"
         options={{
           title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color, size }) => <Entypo name="home" color={color} size={size} />,
           headerRight: () => (
             <Link href="/modal" asChild>
               <HeaderButton />
