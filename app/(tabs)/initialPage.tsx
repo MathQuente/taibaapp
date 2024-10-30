@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { MaterialIcons } from '@expo/vector-icons';
+
 import { Text, FlatList, View } from 'react-native';
 
 import { Button } from '~/components/Button';
@@ -8,14 +8,14 @@ export default function Home() {
   return (
     <View className="flex-1 bg-white">
       <View className="bg-[#CCCCCC] p-4">
-        <Text className="pb-2 pl-5 text-lg">New Events</Text>
+        <Text className="ml-3.5 pb-2 text-lg">New Events</Text>
         <FlatList
           data={[0, 1, 2]}
           keyExtractor={(_, index) => index.toString()}
           numColumns={3}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{
-            paddingHorizontal: 16,
+            paddingHorizontal: 12,
           }}
           columnWrapperStyle={{
             flex: 1,
@@ -33,14 +33,14 @@ export default function Home() {
           )}
         />
       </View>
-      <View className="flex-1 px-4">
+      <View className="flex-1 px-7">
         <Text className="pb-2 pt-2 text-lg">New Places</Text>
         <FlatList
           showsVerticalScrollIndicator={false}
           data={Array.from({ length: 5 })}
           keyExtractor={(_, index) => index.toString()}
           renderItem={() => (
-            <View className="py- flex flex-row justify-between bg-[#CCCCCC] px-3 py-4">
+            <View className=" flex flex-row justify-between bg-[#CCCCCC] px-3 py-4">
               <View>
                 <Text className="font-semibold">Nome do Local</Text>
                 <Text>Endereço</Text>
@@ -52,9 +52,7 @@ export default function Home() {
           )}
         />
       </View>
-      <Button>
-        <MaterialIcons name="search" size={24} color="black" />
-      </Button>
+      <Button />
     </View>
   );
 }
