@@ -14,7 +14,7 @@ export default function TabLayout() {
           backgroundColor: '#FFFF00',
         },
         header: () => (
-          <View className="flex h-14 w-full items-center bg-red-300">
+          <View className="flex h-14 w-full items-center justify-center bg-[#D9D9D9]">
             <Image source={require('../../assets/Logo.png')} />
           </View>
         ),
