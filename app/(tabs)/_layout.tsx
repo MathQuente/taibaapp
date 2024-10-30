@@ -1,9 +1,10 @@
+/* eslint-disable prettier/prettier */
+
 import Entypo from '@expo/vector-icons/Entypo';
 import { Link, Tabs } from 'expo-router';
 import { View, Image } from 'react-native';
 
 import { HeaderButton } from '../../components/HeaderButton';
-import { TabBarIcon } from '../../components/TabBarIcon';
 
 export default function TabLayout() {
   return (
@@ -20,9 +21,9 @@ export default function TabLayout() {
         ),
       }}>
       <Tabs.Screen
-        name="initialPage"
+        name="mainPage"
         options={{
-          title: 'Tab One',
+          title: 'Home',
           tabBarIcon: ({ color, size }) => <Entypo name="home" color={color} size={size} />,
           headerRight: () => (
             <Link href="/modal" asChild>
@@ -32,10 +33,17 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="places"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Places',
+          tabBarIcon: ({ color, size }) => <Entypo name="location-pin" color={color} size={size} />,
+        }}
+      />
+      <Tabs.Screen
+        name="events"
+        options={{
+          title: 'Events',
+          tabBarIcon: ({ color, size }) => <Entypo name="calendar" color={color} size={size} />,
         }}
       />
     </Tabs>
