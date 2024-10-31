@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 
 import { Button } from '~/components/Button';
@@ -5,7 +7,7 @@ import { Button } from '~/components/Button';
 export default function Places() {
   return (
     <View className="flex-1">
-      <View className="flex-row items-center justify-between px-6 py-3">
+      <View className="flex-row items-center justify-between px-7 py-3">
         <Text className="text-lg">Places</Text>
         <View className="w-28">
           <TouchableOpacity className="flex items-center bg-[#CCCCCC] p-3">
