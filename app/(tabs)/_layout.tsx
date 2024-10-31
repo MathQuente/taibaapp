@@ -46,6 +46,15 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => <Entypo name="calendar" color={color} size={size} />,
         }}
       />
+      <Tabs.Screen
+        name="eventDetails"
+        options={{
+          title: 'Events Details',
+          tabBarIcon: ({ color, size }) => (
+            <Entypo name="circle-with-plus" color={color} size={size} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
