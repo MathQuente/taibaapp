@@ -1,13 +1,24 @@
 /* eslint-disable prettier/prettier */
 
+import { useQuery } from '@tanstack/react-query';
+import { format } from 'date-fns';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 
+import { useApi } from '~/api/useApi';
 import { Button } from '~/components/Button';
+import { EventsResponse } from '~/types/responseTypes';
 
-export default function Events() {
+export default function EventsPage() {
+  const api = useApi();
+
+  const { data: EventsReponse } = useQuery<EventsResponse>({
+    queryKey: ['events'],
+    queryFn: async () => api.getEvents(),
+  });
+
   return (
     <View className="flex-1">
-      <View className="flex-row items-center justify-between px-6 py-3">
+      <View className="flex-row items-center justify-between px-7 py-3">
         <Text className="text-lg">Events</Text>
         <View className="w-28">
           <TouchableOpacity className="flex items-center bg-[#CCCCCC] p-3">
@@ -18,17 +29,16 @@ export default function Events() {
       <View className="flex-1 px-7">
         <FlatList
           showsVerticalScrollIndicator={false}
-          data={Array.from({ length: 5 })}
+          data={EventsReponse?.events}
           keyExtractor={(_, index) => index.toString()}
           style={{ flex: 1, backgroundColor: '#CCCCCC' }}
-          renderItem={() => (
+          renderItem={({ item }) => (
             <View className="flex-row justify-between bg-[#CCCCCC] px-3 py-3">
               <View>
-                <Text className="font-semibold">Nome do Local</Text>
-                <Text>Endereço</Text>
-                <Text>Horário de Funcionamento</Text>
-                <Text>Dias de Funcionamento</Text>
-                <Text>Realização(?)</Text>
+                <Text className="font-semibold">{item.name}</Text>
+                <Text>{item.address}</Text>
+                <Text className="text-lg">{format(new Date(item.date), 'dd/MM/yyyy')}</Text>
+                <Text>{item.realized_by}</Text>
               </View>
               <View className="h-24 w-24 bg-black" />
             </View>
