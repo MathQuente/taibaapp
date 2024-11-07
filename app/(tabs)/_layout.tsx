@@ -1,14 +1,17 @@
 /* eslint-disable prettier/prettier */
 
-import Entypo from '@expo/vector-icons/Entypo';
-import { Link, Tabs } from 'expo-router';
+import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Tabs } from 'expo-router';
 import { View, Image } from 'react-native';
 
-import { HeaderButton } from '../../components/HeaderButton';
+export const unstable_settings = {
+  initialRouteName: 'events',
+};
 
 export default function TabLayout() {
   return (
     <Tabs
+      initialRouteName="events"
       screenOptions={{
         tabBarActiveTintColor: 'black',
         tabBarStyle: {
@@ -25,11 +28,6 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color, size }) => <Entypo name="home" color={color} size={size} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <HeaderButton />
-            </Link>
-          ),
         }}
       />
       <Tabs.Screen
@@ -43,18 +41,12 @@ export default function TabLayout() {
         name="events"
         options={{
           title: 'Events',
-          tabBarIcon: ({ color, size }) => <Entypo name="calendar" color={color} size={size} />,
-        }}
-      />
-      <Tabs.Screen
-        name="eventDetails"
-        options={{
-          title: 'Events Details',
           tabBarIcon: ({ color, size }) => (
-            <Entypo name="circle-with-plus" color={color} size={size} />
+            <MaterialCommunityIcons name="calendar" color={color} size={size} />
           ),
         }}
       />
     </Tabs>
   );
 }
+
