@@ -4,14 +4,14 @@ export interface HomeResponse {
 }
 
 export interface EventsResponse {
-  events: Events[]
+  events: Events[];
 }
 
 export interface PlacesReponse {
-  places: Places[]
+  places: Places[];
 }
 
-interface Events {
+export interface Events {
   id: string;
   name: string;
   address: string;
