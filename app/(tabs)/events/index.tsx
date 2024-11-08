@@ -1,12 +1,11 @@
 /* eslint-disable prettier/prettier */
 
 import { useQuery } from '@tanstack/react-query';
-import { format } from 'date-fns';
-import { Link } from 'expo-router';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 import { useApi } from '~/api/useApi';
 import { Button } from '~/components/Button';
+import { EventList } from '~/components/EventList';
 import { EventsResponse } from '~/types/responseTypes';
 
 export default function EventsPage() {
@@ -16,6 +15,10 @@ export default function EventsPage() {
     queryKey: ['events'],
     queryFn: async () => api.getEvents(),
   });
+
+  if (!EventsReponse) {
+    return null;
+  }
 
   return (
     <View className="flex-1">
@@ -27,34 +30,7 @@ export default function EventsPage() {
           </TouchableOpacity>
         </View>
       </View>
-      <View className="flex-1 px-7">
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          data={EventsReponse?.events}
-          keyExtractor={(_, index) => index.toString()}
-          style={{ flex: 1, backgroundColor: '#CCCCCC' }}
-          renderItem={({ item }) => (
-            <Link
-              href={{
-                pathname: '/events/eventDetails',
-                params: {
-                  currentItem: JSON.stringify(item),
-                },
-              }}
-              asChild>
-              <TouchableOpacity className="flex-row justify-between bg-[#CCCCCC] px-3 py-3">
-                <View>
-                  <Text className="font-semibold">{item.name}</Text>
-                  <Text>{item.address}</Text>
-                  <Text className="text-lg">{format(new Date(item.date), 'dd/MM/yyyy')}</Text>
-                  <Text>{item.realized_by}</Text>
-                </View>
-                <View className="h-24 w-24 bg-black" />
-              </TouchableOpacity>
-            </Link>
-          )}
-        />
-      </View>
+      <EventList eventData={EventsReponse?.events} />
       <Button />
     </View>
   );
