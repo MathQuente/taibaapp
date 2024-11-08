@@ -20,7 +20,7 @@ export interface Events {
   realized_by: string;
 }
 
-interface Places {
+export interface Places {
   id: string;
   name: string;
   address: string;
